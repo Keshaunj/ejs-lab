@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Menu - <%= restaurant.name %></title>
+    <title><%= category %> - <%= restaurant.name %></title>
   </head>
   <body>
     <%- include('./partials/nav') %>
-    <h1>Menu for <%= restaurant.name %></h1>
+    <h1><%= category %> Menu for <%= restaurant.name %></h1>
     <ul>
-      <% restaurant.menu.forEach(item => { %>
+      <% menuItems.forEach(item => { %>
         <li>
           <h3><%= item.name %> - $<%= item.price.toFixed(2) %></h3>
           <p>Rating: <%= item.rating %> stars</p>

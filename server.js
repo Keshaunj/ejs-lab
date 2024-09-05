@@ -58,16 +58,28 @@ const RESTAURANT = {
 };
 
 app.get("/", (req, res) => {
-  const view = req.query.view || "home";
-  if (view === "menu") {
-    res.render("menu", { restaurant: RESTAURANT });
-  } else {
-    res.render("home", { restaurant: RESTAURANT });
-  }
+res.render("home",{restaurant:RESTAURANT});
 });
+ 
 app.get("/menu", (req, res) => {
-    res.send("menu")
+    res.render("menu",{ restaurant: RESTAURANT, menu: RESTAURANT.menu});
 });
+
+
+
+app.get("/menu/category/:category", (req, res) => {
+  const category = req.params.category;
+  const validCategories = ['mains', 'desserts', 'sides'];
+  
+  if (!validCategories.includes(category)) {
+    return res.status(404).send('Category not found');
+  }
+  
+  const menuItems = RESTAURANT.menu.filter(item => item.category === category);
+  res.render("category", { restaurant: RESTAURANT, menuItems, category: category.charAt(0).toUpperCase() + category.slice(1) });
+});
+
+
 app.listen(3000, () => {
   console.log('Server is running on port 3000');
 });
