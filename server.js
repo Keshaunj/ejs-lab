@@ -4,37 +4,37 @@ app.set("view engine", "ejs");
 
 // Lab exercise
 const RESTAURANT = {
-  name: "The Green Byte Bistro",
+  name: "Comsic Drinkable Teas",
   isOpen: true,
-  address: "742 Evergreen Rd, Mapleview, OS 45502",
-  phone: "555-321-9876",
+  address: "123 Lake SHore Drive, Chicago,  77777",
+  phone: "1800-777-2222",
   menu: [
     {
       id: 1,
-      name: "Quantum Quinoa Mushroom Burger",
-      price: 13.0,
-      rating: 4,
-      category: "mains",
+      name: "Lavender Bliss Tea",
+      price: 7.89,
+      rating: 4.7,
+      category: "Best Teas",
       details:
-        "A vegetarian burger made with a quinoa and mushroom patty, it will take you to another realm.",
+        " A refreshing blend of brewed black or green tea infused with aromatic lavender, sweetened with honey, and brightened with a splash of lemon juice. Served chilled over ice, this soothing drink is a perfect balance of floral and citrus notes.",
     },
     {
       id: 2,
-      name: "Binary Berry Cheesecake",
-      price: 10.11,
-      rating: 3,
-      category: "desserts",
+      name: "Strawberry Zen Oolong",
+      price: 7.89,
+      rating: 4.2,
+      category: "Best Teas",
       details:
-        "A creamy cheesecake bursting with flavor. A mix of berries in every byte.",
+        " A harmonious blend of smooth oolong tea and sweet, juicy strawberries. Light, refreshing, and perfectly balanced with subtle fruity notes. Ideal for a calm, refreshing sip.",
     },
     {
       id: 3,
-      name: "Recursive Rigatoni",
-      price: 17.0,
-      rating: 5,
-      category: "mains",
+      name: "White Chocolate Pistachio Almond Croissants",
+      price: 6.0,
+      rating: 4.8,
+      category: "Snackables",
       details:
-        "A classic rigatoni pasta dish, layered with rich tomato sauce and herbs. You'll keep coming back for more.",
+        " Flaky, buttery croissants filled with creamy white chocolate, crunchy pistachios, and sliced almonds. Lightly dusted with powdered sugar for a touch of elegance.",
     },
     {
       id: 4,
