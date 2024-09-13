@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= restaurant.name %></title>
-  </head>
-  <body>
-    <!--Partials file link below-->
-    <%- include('./partials/nav') %>
-
-    <h1>Welcome to <%= restaurant.name %></h1>
-    <p>Adress : <%= restaurant.address %></p>
-    <p>Phone: <%= restaurant.phone %></p>
-    <% if (restaurant.isOpen) { %>
-        <p>Yes, we are open!</p> 
-      <% } else { %>
-        <p>Sorry, we are closed.</p> 
-      <% } %>
-
-    <h2>Menu</h2>
-    <ul>
-      <% restaurant.menu.forEach(item => { %>
-      <li>
-        <h3><%= item.name %> - $<%= item.price.toFixed(2) %></h3>
-        <p>Rating: <%= item.rating %> stars</p>
-        <p><%= item.details %></p>
-      </li>
-      <% }) %>
-    </ul>
-  </body>
+    <!-- Remove the link to the CSS file if you don't have one -->
+</head>
+<body>
+    <header>
+        <h1>Welcome to <%= restaurant.name %></h1>
+        <p><%= restaurant.address %></p>
+        <p>Phone: <%= restaurant.phone %></p>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="/menu">Menu</a></li>
+            <li><a href="/menu/category/BestTeas">Best Teas</a></li>
+            <li><a href="/menu/category/Snackables">Snackables</a></li>
+            <li><a href="/menu/category/AddOns">Add Ons</a></li>
+            
+        </ul>
+    </nav>
+    <main>
+        <h2>Welcome to our restaurant!</h2>
+        <p>Enjoy our selection of delicious drinks and snacks.</p>
+    </main>
+    <footer>
+        <p>&copy; <%= new Date().getFullYear() %> <%= restaurant.name %>. All rights reserved.</p>
+    </footer>
+</body>
 </html>
