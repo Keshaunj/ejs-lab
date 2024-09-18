@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
+//change info later
+const ratingSchema = new mongoose.Schema({
 
-const menuItemSchema = new mongoose.Schema({
-  id: { type: Number, required: true },
   name: { type: String, required: true },
   price: { type: Number, required: true },
   rating: { type: Number, required: true },
@@ -9,6 +9,4 @@ const menuItemSchema = new mongoose.Schema({
   details: { type: String, required: true },
 });
 
-const MenuItem = mongoose.model("MenuItem", menuItemSchema);
-
-module.exports = MenuItem;
+const Rating = mongoose.model("Rating", ratingSchema);

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= tea.name %></title>
+</head>
+<body>
+  <h1><%= tea.name %></h1>
+  <p>Price: $<%= tea.price %></p>
+  <p>Rating: <%= tea.rating %></p>
+  <p><%= tea.details %></p>
+
+  <a href="/">Back to Home</a>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

@@ -1,32 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= restaurant.name %></title>
-    <!-- Remove the link to the CSS file if you don't have one -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
 </head>
 <body>
-    <header>
-        <h1>Welcome to <%= restaurant.name %></h1>
-        <p><%= restaurant.address %></p>
-        <p>Phone: <%= restaurant.phone %></p>
-    </header>
-    <nav>
-        <ul>
-            <li><a href="/menu">Menu</a></li>
-            <li><a href="/menu/category/BestTeas">Best Teas</a></li>
-            <li><a href="/menu/category/Snackables">Snackables</a></li>
-            <li><a href="/menu/category/AddOns">Add Ons</a></li>
-            
-        </ul>
-    </nav>
-    <main>
-        <h2>Welcome to our restaurant!</h2>
-        <p>Enjoy our selection of delicious drinks and snacks.</p>
-    </main>
-    <footer>
-        <p>&copy; <%= new Date().getFullYear() %> <%= restaurant.name %>. All rights reserved.</p>
-    </footer>
+  <h1>Welcome to Tea Forum</h1>
+
+  <nav>
+    <!-- Navigation links here -->
+  </nav>
+
+  <h2>Featured Tea</h2>
+  <ul>
+    <li><a href="/tea/Lavender%20Bliss%20Tea">Lavender Bliss Tea</a></li>
+    <!-- Add more tea links here -->
+  </ul>
+
+  <%- include('partials/footer') %>
 </body>
 </html>
