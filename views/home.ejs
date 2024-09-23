@@ -3,21 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home</title>
+  <title>Tea Menu</title>
 </head>
 <body>
-  <h1>Welcome to Tea Forum</h1>
-
-  <nav>
-    <!-- Navigation links here -->
-  </nav>
-
-  <h2>Featured Tea</h2>
+  <h1>Our Tea Menu</h1>
   <ul>
-    <li><a href="/tea/Lavender%20Bliss%20Tea">Lavender Bliss Tea</a></li>
-    <!-- Add more tea links here -->
+    <% teas.forEach(tea => { %>
+      <li>
+        <h2><%= tea.name %></h2>
+        <p><strong>Category:</strong> <%= tea.category %></p>
+        <p><strong>Price:</strong> $<%= tea.price %></p>
+        <p><strong>Rating:</strong> <%= tea.rating %> stars</p>
+        <p><strong>Details:</strong> <%= tea.details %></p>
+      </li>
+    <% }) %>
   </ul>
 
-  <%- include('partials/footer') %>
+  <!-- Button to go back to the Home page -->
+  <button onclick="window.location.href='/'">Go Back Home</button>
 </body>
 </html>

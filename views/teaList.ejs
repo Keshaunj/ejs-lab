@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Teas</title>
+  <style>
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>List of Teas</h1>
+  <ul>
+    <% teas.forEach(tea => { %>
+      <li>
+        <a href="/tea/<%=tea._id%>"><%= tea.name %></a>
+      </li>
+    <% }) %>
+  </ul>
+
+  <a href="/">Back to Home</a>
+  <%- include('partials/footer') %>
+</body>
+</html>

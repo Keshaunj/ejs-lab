@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Menu - <%= restaurant.name %></title>
-  </head>
-  <body>
-    <%- include('./partials/nav') %>
-    <h1>Menu for <%= restaurant.name %></h1>
-    <ul>
-      <% restaurant.menu.forEach(item => { %>
-        <li>
-          <h3><%= item.name %> - $<%= item.price.toFixed(2) %></h3>
-          <p>Rating: <%= item.rating %> stars</p>
-          <p><%= item.details %></p>
-        </li>
-      <% }) %>
-    </ul>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snackables Menu</title>
+    <link rel="stylesheet" href="/styles.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+    <h1>Snackables Menu</h1>
+
+    <% if (snackables && snackables.length > 0) { %>
+        <ul>
+            <% snackables.forEach(snackable => { %>
+                <li>
+                    <strong><%= snackable.name %></strong>: <%= snackable.details %>
+                </li>
+            <% }); %>
+        </ul>
+    <% } else { %>
+        <p>No items found.</p>
+    <% } %>
+
+    <a href="/logTea" >Back to Tea List</a> <!-- Link back to the main menu -->
+</body>
 </html>

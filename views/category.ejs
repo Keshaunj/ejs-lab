@@ -1,21 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= category %> - <%= restaurant.name %></title>
-  </head>
-  <body>
-    <%- include('./partials/nav') %>
-    <h1><%= category %> Menu for <%= restaurant.name %></h1>
-    <ul>
-      <% menuItems.forEach(item => { %>
-        <li>
-          <h3><%= item.name %> - $<%= item.price.toFixed(2) %></h3>
-          <p>Rating: <%= item.rating %> stars</p>
-          <p><%= item.details %></p>
-        </li>
-      <% }) %>
-    </ul>
-  </body>
+<html>
+<head>
+  <title><%= category %> - Tea Menu</title>
+</head>
+<body>
+  <h1><%= category %> - Tea Selection</h1>
+  <ul>
+    <% teas.forEach(tea => { %>
+      <li><a href="/menu/<%= tea._id %>"><%= tea.name %></a></li>
+    <% }) %>
+  </ul>
+</body>
 </html>
