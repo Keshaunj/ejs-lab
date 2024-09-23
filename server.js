@@ -63,7 +63,7 @@ app.get('/tea', async (req, res) => {
 // Display menu
 app.get('/menu', (req, res) => {
   try {
-    res.render('menu', { snackables: teaData }); // Pass the entire teaData array
+    res.render('menu', { snackables: teaData });
   } catch (error) {
     res.status(500).send('Error retrieving menu.');
   }
@@ -78,6 +78,11 @@ app.get('/menu/category/:categoryName', async (req, res) => {
     console.error(error);
     res.status(500).send('Error retrieving category.');
   }
+});
+
+// Display a message on the reviews page
+app.get('/reviews', (req, res) => {
+  res.render('reviews'); // Render the reviews view
 });
 
 // Start server

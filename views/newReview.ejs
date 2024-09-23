@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title || 'Submit a Review' %></title>
+</head>
+<body>
+    <h1><%= title || 'Submit a Review' %></h1>
+    <form action="/reviews" method="POST">
+        <input type="text" name="title" placeholder="Review Title" required>
+        <textarea name="content" placeholder="Review Content" required></textarea>
+        <input type="number" name="rating" min="1" max="5" required>
+        <button type="submit">Submit Review</button>
+    </form>
+    <a href="/reviews">View All Reviews</a>
+</body>
+</html>
+
