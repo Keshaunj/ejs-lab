@@ -3,17 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title || 'Submit a Review' %></title>
+    <title>Tea Reviews</title>
+    <script>
+        function deleteTea(id) {
+            fetch(`/reviews/${id}`, {
+                method: 'DELETE'
+            })
+            .then(response => {
+                if (response.ok) {
+                    location.reload(); // Reload the page to see the updated list
+                } else {
+                    alert('Error deleting tea.');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
 </head>
 <body>
-    <h1><%= title || 'Submit a Review' %></h1>
-    <form action="/reviews" method="POST">
-        <input type="text" name="title" placeholder="Review Title" required>
-        <textarea name="content" placeholder="Review Content" required></textarea>
-        <input type="number" name="rating" min="1" max="5" required>
+    <h1>Tea Reviews</h1>
+    
+    <!-- New Tea Review Form -->
+    <h2>Submit a New Tea Review</h2>
+    <form action="/submitTea" method="POST">
+        <label for="name">Tea Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required></textarea>
+        <br>
+        <label for="rating">Rating:</label>
+        <input type="number" id="rating" name="rating" min="1" max="5" required>
+        <br>
         <button type="submit">Submit Review</button>
     </form>
-    <a href="/reviews">View All Reviews</a>
+
+    <!-- Display Tea Reviews -->
+    <% if (teas.length === 0) { %>
+        <p>No reviews available.</p>
+    <% } else { %>
+        <ul>
+            <% teas.forEach(tea => { %>
+                <li>
+                    <h2><%= tea.name %></h2>
+                    <p><%= tea.description %></p>
+                    <p>Rating: <%= tea.rating %> / 5</p>
+                    <button onclick="deleteTea('<%= tea._id %>')">Delete</button> <!-- Delete button -->
+                </li>
+            <% }) %>
+        </ul>
+    <% } %>
+
+    <a href="/logTea">Back to Log Tea</a>
 </body>
 </html>
-

@@ -3,11 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reviews</title>
+    <title>Tea Reviews</title>
 </head>
 <body>
-    <h1>Reviews</h1>
-    <p>No reviews available.</p>
+    <h1>Tea Reviews</h1>
+    <% if (teas.length === 0) { %>
+        <p>No reviews available.</p>
+    <% } else { %>
+        <ul>
+            <% teas.forEach(tea => { %>
+                <li>
+                    <h2><%= tea.name %></h2>
+                    <p><%= tea.description %></p>
+                    <p>Rating: <%= tea.rating %> / 5</p>
+                </li>
+            <% }) %>
+        </ul>
+    <% } %>
     <a href="/logTea">Back to Log Tea</a>
 </body>
 </html>

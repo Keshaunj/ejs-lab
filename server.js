@@ -1,24 +1,22 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const TeaData = require('./data/teaData'); // Ensure the path is correct based on your project structure
 dotenv.config();
 
-// Import models and data
+// Import the Tea model
 const Tea = require('./models/tea');
-const teaData = require('./data/teaData');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true })); // Middleware to parse URL-encoded bodies
+app.set('view engine', 'ejs'); // Set EJS as the template engine
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI)
-  .then(() => console.log(`Connected to MongoDB ${mongoose.connection.name}.`))
-  .catch(err => console.error('MongoDB connection error:', err));
-
-// Set EJS as the template engine
-app.set('view engine', 'ejs');
+    .then(() => console.log(`Connected to MongoDB ${mongoose.connection.name}.`))
+    .catch(err => console.error('MongoDB connection error:', err));
 
 // Home route
 app.get('/', (req, res) => res.redirect('/logTea'));
@@ -28,64 +26,56 @@ app.get('/logTea', (req, res) => res.render('logTea'));
 
 // Submit tea data
 app.post('/submitTea', async (req, res) => {
-  try {
-    const newTea = new Tea(req.body);
-    await newTea.save();
-    res.redirect('/logTea');
-  } catch (error) {
-    console.error('Error saving tea data:', error);
-    res.status(500).send('Error saving tea data.');
-  }
+    try {
+        const newTea = new Tea(req.body);
+        await newTea.save();
+        res.redirect('/reviews'); // Redirect to reviews page after submitting
+    } catch (error) {
+        console.error('Error saving tea data:', error);
+        res.status(500).send('Error saving tea data.');
+    }
 });
 
-// Display tea details
-app.get('/tea/:name', async (req, res) => {
-  try {
-    const tea = await Tea.findOne({ name: req.params.name });
-    tea ? res.render('teaDetails', { tea }) : res.status(404).send('Tea not found');
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Error retrieving tea data.');
-  }
+// Display all tea reviews
+app.get('/reviews', async (req, res) => {
+    try {
+        const teas = await Tea.find(); // Retrieve all teas from the database
+        res.render('newreview', { teas }); // Render the newreview view with the retrieved teas
+    } catch (error) {
+        console.error('Error retrieving teas:', error);
+        res.status(500).send('Error retrieving teas.');
+    }
 });
 
-// List all teas
-app.get('/tea', async (req, res) => {
-  try {
-    const teas = await Tea.find();
-    res.render('teaList', { teas });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Error retrieving teas.');
-  }
+// Handle delete tea request
+app.delete('/reviews/:id', async (req, res) => {
+    try {
+        await Tea.findByIdAndDelete(req.params.id); // Delete the tea by its ID
+        res.status(200).send('Tea deleted successfully.');
+    } catch (error) {
+        console.error('Error deleting tea:', error);
+        res.status(500).send('Error deleting tea.');
+    }
 });
 
-// Display menu
-app.get('/menu', (req, res) => {
-  try {
-    res.render('menu', { snackables: teaData });
-  } catch (error) {
-    res.status(500).send('Error retrieving menu.');
-  }
-});
+// Display the menu with best teas and snackables
+app.get('/menu', async (req, res) => {
+    try {
+        const teas = await Tea.find(); // Retrieve all teas from the database
 
-// Display teas by category
-app.get('/menu/category/:categoryName', async (req, res) => {
-  try {
-    const teas = await Tea.find({ category: req.params.categoryName });
-    res.render('category', { teas, category: req.params.categoryName });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Error retrieving category.');
-  }
-});
+        // Filter to get best teas and snackables from TeaData
+        const bestTeas = TeaData.filter(item => item.category === 'BestTeas');
+        const snackables = TeaData.filter(item => item.category === 'Snackables');
 
-// Display a message on the reviews page
-app.get('/reviews', (req, res) => {
-  res.render('reviews'); // Render the reviews view
+        // Render the menu view with teas and static data
+        res.render('menu', { teas, bestTeas, snackables });
+    } catch (error) {
+        console.error('Error retrieving teas:', error);
+        res.status(500).send('Error retrieving teas.'); // Send a 500 error response
+    }
 });
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+    console.log(`Server is running on port ${PORT}`);
 });

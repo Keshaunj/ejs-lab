@@ -7,20 +7,32 @@
     <link rel="stylesheet" href="/styles.css"> <!-- Link to your CSS file -->
 </head>
 <body>
-    <h1>Snackables Menu</h1>
-
-    <% if (snackables && snackables.length > 0) { %>
+    <h1>Best Teas Menu</h1>
+    <% if (bestTeas && bestTeas.length > 0) { %>
         <ul>
-            <% snackables.forEach(snackable => { %>
+            <% bestTeas.forEach(tea => { %>
                 <li>
-                    <strong><%= snackable.name %></strong>: <%= snackable.details %>
+                    <strong><%= tea.name %></strong>: <%= tea.details %> (Price: $<%= tea.price %>)
                 </li>
             <% }); %>
         </ul>
     <% } else { %>
-        <p>No items found.</p>
+        <p>No best teas found.</p>
     <% } %>
 
-    <a href="/logTea" >Back to Tea List</a> <!-- Link back to the main menu -->
+    <h1>Snackables Menu</h1>
+    <% if (snackables && snackables.length > 0) { %>
+        <ul>
+            <% snackables.forEach(snackable => { %>
+                <li>
+                    <strong><%= snackable.name %></strong>: <%= snackable.details %> (Price: $<%= snackable.price %>)
+                </li>
+            <% }); %>
+        </ul>
+    <% } else { %>
+        <p>No snackables found.</p>
+    <% } %>
+
+    <a href="/logTea">Back to Tea List</a> <!-- Link back to the main menu -->
 </body>
 </html>
